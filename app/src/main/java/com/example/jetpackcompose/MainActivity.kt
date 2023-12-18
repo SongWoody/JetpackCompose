@@ -11,10 +11,13 @@ import androidx.compose.runtime.*
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,12 +31,17 @@ import androidx.compose.ui.unit.sp
 import com.example.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
+    @ExperimentalMaterial3Api
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeTheme {
                 // A surface container using the 'background' color from the theme
-                DemoScreen()
+                Scaffold(topBar = {
+                    TopAppBar(title = { Text(text = "Title Bar") })
+                }) {
+                    DemoScreen(Modifier.padding(it))
+                }
             }
         }
     }
@@ -66,7 +74,7 @@ fun DemoSlider(sliderPosition: Float, onPositionChange: (Float)->Unit) {
 }
 
 @Composable
-fun DemoScreen() {
+fun DemoScreen(modifier: Modifier) {
     var sliderPosition by remember { mutableStateOf(20f) }
 
     val handlePositionChange = { position: Float ->
@@ -76,7 +84,7 @@ fun DemoScreen() {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
     ) {
         DemoText(message = "Welcome to Compose", fontSize = sliderPosition)
 
