@@ -1,4 +1,4 @@
-package com.example.jetpackcompose.scenes
+package com.example.jetpackcompose.compose.scenes
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
