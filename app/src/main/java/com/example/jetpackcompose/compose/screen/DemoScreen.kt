@@ -1,4 +1,4 @@
-package com.example.jetpackcompose.compose.scenes
+package com.example.jetpackcompose.compose.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.sp
 
 @ExperimentalMaterial3Api
 @Composable
-fun DemoScene(modifier: Modifier, onNavigateToInput: ()->Unit) {
+fun DemoScreen(modifier: Modifier, onNavigateToInput: ()->Unit) {
     var sliderPosition by remember { mutableStateOf(20f) }
 
     val handlePositionChange = { position: Float ->
@@ -35,7 +35,7 @@ fun DemoScene(modifier: Modifier, onNavigateToInput: ()->Unit) {
     }
 
     Scaffold(topBar = {
-        TopAppBar(title = { Text(text = "DemoScene") })
+        TopAppBar(title = { Text(text = "DemoScreen") })
     }) { paddingValues ->
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

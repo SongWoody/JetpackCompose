@@ -1,4 +1,4 @@
-package com.example.jetpackcompose.compose.scenes
+package com.example.jetpackcompose.compose.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,9 +19,9 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InputScene(modifier: Modifier, text: String = "", onValueChange: (String)->Unit) {
+fun InputScreen(modifier: Modifier, text: String = "", onValueChange: (String)->Unit) {
     Scaffold(topBar = {
-        TopAppBar(title = { Text(text = "InputScene") })
+        TopAppBar(title = { Text(text = "InputScreen") })
     }) { paddingValues ->
         Column(
             modifier = modifier.fillMaxSize(),

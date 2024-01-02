@@ -8,8 +8,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.jetpackcompose.compose.scenes.DemoScene
-import com.example.jetpackcompose.compose.scenes.InputScene
+import com.example.jetpackcompose.compose.screen.DemoScreen
+import com.example.jetpackcompose.compose.screen.InputScreen
 import com.example.jetpackcompose.ui.theme.JetpackComposeTheme
 
 sealed class Screen(
@@ -40,7 +40,7 @@ fun MyNavHost(navController: NavHostController) {
         startDestination = Screen.Demo.route
     ) {
         composable(Screen.Demo.route) {
-            DemoScene(
+            DemoScreen(
                 modifier = Modifier,
                 onNavigateToInput = {
                     navController.navigate(Screen.Input.route)
@@ -48,7 +48,7 @@ fun MyNavHost(navController: NavHostController) {
             )
         }
         composable(Screen.Input.route) {
-            InputScene(modifier = Modifier) { }
+            InputScreen(modifier = Modifier) { }
         }
     }
 }
