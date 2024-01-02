@@ -14,25 +14,25 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @ExperimentalMaterial3Api
 @Composable
-fun DemoScreen(modifier: Modifier, onNavigateToInput: ()->Unit) {
-    var sliderPosition by remember { mutableStateOf(20f) }
-
-    val handlePositionChange = { position: Float ->
-        sliderPosition = position
-    }
+fun DemoScreen(
+    modifier: Modifier,
+    welcomeText: String,
+    onNavigateToInput: ()->Unit,
+    viewModel: DemoScreenViewModel = viewModel(factory = DemoScreenViewModel.Factory())
+) {
+    val sliderPosition by viewModel.sp.collectAsState()
 
     Scaffold(topBar = {
         TopAppBar(title = { Text(text = "DemoScreen") })
@@ -40,13 +40,15 @@ fun DemoScreen(modifier: Modifier, onNavigateToInput: ()->Unit) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            modifier = modifier.fillMaxSize().padding(paddingValues),
+            modifier = modifier
+                .fillMaxSize()
+                .padding(paddingValues),
         ) {
-            DemoText(message = "Welcome to Compose", fontSize = sliderPosition)
+            DemoText(message = welcomeText, fontSize = sliderPosition)
 
             Spacer(modifier = Modifier.height(150.dp))
 
-            DemoSlider(sliderPosition = sliderPosition, onPositionChange = handlePositionChange)
+            DemoSlider(sliderPosition = sliderPosition, onPositionChange = viewModel::changeSpValue)
 
             Text(
                 style = MaterialTheme.typography.headlineMedium,

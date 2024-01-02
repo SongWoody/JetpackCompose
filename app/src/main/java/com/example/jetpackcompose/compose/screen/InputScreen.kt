@@ -13,6 +13,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -23,14 +27,18 @@ fun InputScreen(modifier: Modifier, text: String = "", onValueChange: (String)->
     Scaffold(topBar = {
         TopAppBar(title = { Text(text = "InputScreen") })
     }) { paddingValues ->
+        var textFieldValue by remember { mutableStateOf(text) }
+
         Column(
             modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment =  Alignment.CenterHorizontally
         ) {
-            TextField(modifier = modifier.padding(paddingValues), value = text, onValueChange = onValueChange)
+            TextField(modifier = modifier.padding(paddingValues), value = textFieldValue, onValueChange = {
+                textFieldValue = it
+            })
             Spacer(modifier = Modifier.height(10.dp))
-            Button(onClick = { }) {
+            Button(onClick = { onValueChange(textFieldValue) }) {
                 Text(text = "Submit")
             }
         }
