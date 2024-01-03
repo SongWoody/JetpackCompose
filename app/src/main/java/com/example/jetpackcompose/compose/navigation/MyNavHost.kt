@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.jetpackcompose.compose.screen.DemoScreen
 import com.example.jetpackcompose.compose.screen.InputScreen
+import com.example.jetpackcompose.compose.screen.color.ColorCheckerScreen
 
 @ExperimentalMaterial3Api
 @Composable
@@ -42,6 +43,12 @@ fun MyNavHost(navController: NavHostController) {
                 navController.previousBackStackEntry?.savedStateHandle?.set("message", it)
                 navController.popBackStack()
             }
+        }
+
+        composable(
+            route = MyNavType.ColorChecker.route
+        ) {
+            ColorCheckerScreen()
         }
     }
 }

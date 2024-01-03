@@ -9,4 +9,5 @@ sealed class MyNavType(
 ) {
     object Demo: MyNavType("Demo")
     object Input: MyNavType("Input")
+    object ColorChecker: MyNavType("ColorChecker")
 }
