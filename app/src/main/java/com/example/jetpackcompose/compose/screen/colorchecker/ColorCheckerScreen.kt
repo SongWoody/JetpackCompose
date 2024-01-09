@@ -20,13 +20,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import kotlin.math.min
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ColorCheckerScreen(
-    viewModel: ColorCheckerViewModel = viewModel()
+    viewModel: ColorCheckerViewModel = hiltViewModel()
 ) {
     Scaffold { paddingValues ->
         Column(modifier = Modifier

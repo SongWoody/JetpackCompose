@@ -22,7 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @ExperimentalMaterial3Api
 @Composable
@@ -30,7 +30,7 @@ fun FontSizeCheckerScreen(
     modifier: Modifier,
     welcomeText: String,
     onNavigateToInput: ()->Unit,
-    viewModel: FontSizeCheckerViewModel = viewModel(factory = FontSizeCheckerViewModel.Factory())
+    viewModel: FontSizeCheckerViewModel = hiltViewModel()
 ) {
     val sliderPosition by viewModel.sp.collectAsState()
 

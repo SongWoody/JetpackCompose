@@ -18,7 +18,7 @@ import com.example.jetpackcompose.compose.screen.colorchecker.ColorCheckerScreen
 fun MyNavHost(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = MyNavType.ColorChecker.route
+        startDestination = MyNavType.FontSizeChecker.route
     ) {
         composable(MyNavType.FontSizeChecker.route) { entry ->
             Log.i("Woody", "Demo Screen")
