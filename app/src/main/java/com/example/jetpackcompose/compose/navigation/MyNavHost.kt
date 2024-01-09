@@ -9,9 +9,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.jetpackcompose.compose.screen.DemoScreen
+import com.example.jetpackcompose.compose.screen.fontsizechecker.FontSizeCheckerScreen
 import com.example.jetpackcompose.compose.screen.InputScreen
-import com.example.jetpackcompose.compose.screen.color.ColorCheckerScreen
+import com.example.jetpackcompose.compose.screen.colorchecker.ColorCheckerScreen
 
 @ExperimentalMaterial3Api
 @Composable
@@ -20,10 +20,10 @@ fun MyNavHost(navController: NavHostController) {
         navController = navController,
         startDestination = MyNavType.ColorChecker.route
     ) {
-        composable(MyNavType.Demo.route) { entry ->
+        composable(MyNavType.FontSizeChecker.route) { entry ->
             Log.i("Woody", "Demo Screen")
             val welcomeText = entry.savedStateHandle.get<String>("message") ?: "Welcome to Compose"
-            DemoScreen(
+            FontSizeCheckerScreen(
                 modifier = Modifier,
                 welcomeText = welcomeText,
                 onNavigateToInput = {

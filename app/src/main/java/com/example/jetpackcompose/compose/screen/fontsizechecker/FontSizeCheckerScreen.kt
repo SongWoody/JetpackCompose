@@ -1,4 +1,4 @@
-package com.example.jetpackcompose.compose.screen
+package com.example.jetpackcompose.compose.screen.fontsizechecker
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,11 +26,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 
 @ExperimentalMaterial3Api
 @Composable
-fun DemoScreen(
+fun FontSizeCheckerScreen(
     modifier: Modifier,
     welcomeText: String,
     onNavigateToInput: ()->Unit,
-    viewModel: DemoScreenViewModel = viewModel(factory = DemoScreenViewModel.Factory())
+    viewModel: FontSizeCheckerViewModel = viewModel(factory = FontSizeCheckerViewModel.Factory())
 ) {
     val sliderPosition by viewModel.sp.collectAsState()
 
@@ -44,11 +44,11 @@ fun DemoScreen(
                 .fillMaxSize()
                 .padding(paddingValues),
         ) {
-            DemoText(message = welcomeText, fontSize = sliderPosition)
+            TargetText(message = welcomeText, fontSize = sliderPosition)
 
             Spacer(modifier = Modifier.height(150.dp))
 
-            DemoSlider(sliderPosition = sliderPosition, onPositionChange = viewModel::changeSpValue)
+            SizeSlider(sliderPosition = sliderPosition, onPositionChange = viewModel::changeSpValue)
 
             Text(
                 style = MaterialTheme.typography.headlineMedium,
@@ -69,7 +69,7 @@ fun DemoScreen(
  * Demo Text
  */
 @Composable
-fun DemoText(message: String, fontSize: Float) {
+fun TargetText(message: String, fontSize: Float) {
     Text(
         text = message,
         fontSize = fontSize.sp,
@@ -79,12 +79,12 @@ fun DemoText(message: String, fontSize: Float) {
 
 @Preview
 @Composable
-fun DemoTextPreView() {
-    DemoText(message = "Welcome to Compose", fontSize = 16f)
+fun TargetTextPreView() {
+    TargetText(message = "Welcome to Compose", fontSize = 16f)
 }
 
 @Composable
-fun DemoSlider(sliderPosition: Float, onPositionChange: (Float)->Unit) {
+fun SizeSlider(sliderPosition: Float, onPositionChange: (Float)->Unit) {
     Slider(
         modifier = Modifier.padding(10.dp),
         valueRange = 20f..40f,

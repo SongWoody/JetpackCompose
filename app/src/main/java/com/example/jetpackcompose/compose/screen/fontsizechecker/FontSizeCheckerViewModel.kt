@@ -1,16 +1,16 @@
-package com.example.jetpackcompose.compose.screen
+package com.example.jetpackcompose.compose.screen.fontsizechecker
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class DemoScreenViewModel : ViewModel() {
+class FontSizeCheckerViewModel : ViewModel() {
 
     class Factory: ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
-            return DemoScreenViewModel() as T
+            return FontSizeCheckerViewModel() as T
         }
     }
 

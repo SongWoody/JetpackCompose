@@ -1,4 +1,4 @@
-package com.example.jetpackcompose.compose.screen.color
+package com.example.jetpackcompose.compose.screen.colorchecker
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -1,4 +1,4 @@
-package com.example.jetpackcompose.compose.screen.color
+package com.example.jetpackcompose.compose.screen.colorchecker
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
