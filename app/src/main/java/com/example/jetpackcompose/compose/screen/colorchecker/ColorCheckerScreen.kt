@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
@@ -21,11 +22,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.jetpackcompose.compose.ui.ComposeTwoButtonDialogInfo
 import kotlin.math.min
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ColorCheckerScreen(
+    onShowTwoButtonDialog: (ComposeTwoButtonDialogInfo)->Unit,
     viewModel: ColorCheckerViewModel = hiltViewModel()
 ) {
     Scaffold { paddingValues ->
@@ -67,6 +70,22 @@ fun ColorCheckerScreen(
                 
                 Text(text = "Blue Color")
                 NumberView(v = colorBlueValue, onValueChange = viewModel::updateColorBlue)
+
+                Button(onClick = {
+                    onShowTwoButtonDialog(
+                        ComposeTwoButtonDialogInfo(
+                            "Hello Test",
+                            onLeftButtonClick = {
+                                it.invoke()
+                            },
+                            onRightButtonClick = {
+                                it.invoke()
+                            }
+                        )
+                    )
+                }) {
+                    Text(text = "Button Test")
+                }
             }
         }
     }
@@ -78,7 +97,9 @@ fun NumberView(v: Float, onValueChange: (Float)->Unit) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Slider(
-            modifier = Modifier.padding(end = 10.dp).weight(0.5f),
+            modifier = Modifier
+                .padding(end = 10.dp)
+                .weight(0.5f),
             valueRange = 0f..255f,
             value = v, onValueChange = onValueChange)
 
