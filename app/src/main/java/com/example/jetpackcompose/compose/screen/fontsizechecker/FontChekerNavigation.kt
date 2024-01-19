@@ -5,6 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import com.example.jetpackcompose.R
+import com.example.jetpackcompose.compose.etc.TextResource
 import com.example.jetpackcompose.compose.screen.fontInput.navigateFontInput
 import com.example.jetpackcompose.compose.ui.ComposeTwoButtonDialogInfo
 
@@ -14,7 +16,7 @@ fun NavGraphBuilder.fontCheckerNavigation(
     onShowTwoButtonDialog: (ComposeTwoButtonDialogInfo)->Unit
 ) {
     composable(route = FontCheckerRoute.route) { entry ->
-        val welcomeText = entry.savedStateHandle.get<String>("message") ?: "Welcome to Compose"
+        val welcomeText = entry.savedStateHandle.get<String>("message") ?: TextResource(R.string.app_name).getString()
         FontSizeCheckerScreen(
             modifier = Modifier,
             welcomeText = welcomeText,
