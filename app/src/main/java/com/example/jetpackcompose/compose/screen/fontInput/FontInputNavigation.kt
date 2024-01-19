@@ -1,12 +1,17 @@
 package com.example.jetpackcompose.compose.screen.fontInput
 
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.jetpackcompose.compose.ui.ComposeTwoButtonDialogInfo
+
+fun NavController.navigateFontInput(defaultText: String) {
+    navigate("${FontInputRoute.route}/defaultText=${defaultText}")
+}
 
 fun NavGraphBuilder.fontInputNavGraph(
     navController: NavHostController,

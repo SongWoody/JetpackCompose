@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.example.jetpackcompose.compose.screen.fontInput.FontInputRoute
+import com.example.jetpackcompose.compose.screen.fontInput.navigateFontInput
 import com.example.jetpackcompose.compose.ui.ComposeTwoButtonDialogInfo
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -19,7 +19,7 @@ fun NavGraphBuilder.fontCheckerNavigation(
             modifier = Modifier,
             welcomeText = welcomeText,
             onNavigateToInput = {
-                navController.navigate("${FontInputRoute.route}/defaultText=${welcomeText}")
+                navController.navigateFontInput(welcomeText)
             }
         )
     }
