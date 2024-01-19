@@ -1,4 +1,4 @@
-package com.example.jetpackcompose.compose.screen
+package com.example.jetpackcompose.compose.screen.fontInput
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InputScreen(modifier: Modifier, text: String = "", onValueChange: (String)->Unit) {
+fun FontInputScreen(modifier: Modifier, text: String = "", onValueChange: (String)->Unit) {
     Scaffold(topBar = {
         TopAppBar(title = { Text(text = "InputScreen") })
     }) { paddingValues ->

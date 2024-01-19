@@ -6,8 +6,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.example.jetpackcompose.compose.navigation.MyNavHost
+import com.example.jetpackcompose.compose.screen.colorchecker.colorCheckerNavGraph
+import com.example.jetpackcompose.compose.screen.fontInput.fontInputNavGraph
+import com.example.jetpackcompose.compose.screen.fontsizechecker.FontCheckerRoute
+import com.example.jetpackcompose.compose.screen.fontsizechecker.fontCheckerNavigation
 import com.example.jetpackcompose.compose.ui.ComposeTwoButtonDialog
 import com.example.jetpackcompose.compose.ui.ComposeTwoButtonDialogInfo
 import com.example.jetpackcompose.ui.theme.JetpackComposeTheme
@@ -29,9 +33,16 @@ fun MyComposeApp() {
     }
 
     JetpackComposeTheme {
-        MyNavHost(
+        NavHost(
             navController = navController,
-            onShowTwoButtonDialog = onShowTwoButtonDialog
-        )
+            startDestination = FontCheckerRoute.route
+        ) {
+
+            fontCheckerNavigation(navController, onShowTwoButtonDialog)
+
+            fontInputNavGraph(navController, onShowTwoButtonDialog)
+
+            colorCheckerNavGraph(onShowTwoButtonDialog)
+        }
     }
 }
