@@ -12,6 +12,8 @@ import com.example.jetpackcompose.compose.screen.colorchecker.colorCheckerNavGra
 import com.example.jetpackcompose.compose.screen.fontInput.fontInputNavGraph
 import com.example.jetpackcompose.compose.screen.fontsizechecker.FontCheckerRoute
 import com.example.jetpackcompose.compose.screen.fontsizechecker.fontCheckerNavigation
+import com.example.jetpackcompose.compose.screen.main.MainRoute
+import com.example.jetpackcompose.compose.screen.main.mainScreen
 import com.example.jetpackcompose.compose.ui.ComposeTwoButtonDialog
 import com.example.jetpackcompose.compose.ui.ComposeTwoButtonDialogInfo
 import com.example.jetpackcompose.ui.theme.JetpackComposeTheme
@@ -35,7 +37,7 @@ fun MyComposeApp() {
     JetpackComposeTheme {
         NavHost(
             navController = navController,
-            startDestination = FontCheckerRoute.route
+            startDestination = MainRoute.route
         ) {
 
             fontCheckerNavigation(navController, onShowTwoButtonDialog)
@@ -43,6 +45,8 @@ fun MyComposeApp() {
             fontInputNavGraph(navController, onShowTwoButtonDialog)
 
             colorCheckerNavGraph(onShowTwoButtonDialog)
+
+            mainScreen()
         }
     }
 }
