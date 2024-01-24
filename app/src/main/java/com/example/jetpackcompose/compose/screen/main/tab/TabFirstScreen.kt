@@ -1,34 +1,71 @@
 package com.example.jetpackcompose.compose.screen.main.tab
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.jetpackcompose.R
+import com.example.jetpackcompose.compose.screen.colorchecker.ColorCheckerRoute
 
-fun NavGraphBuilder.firstTabScreen() {
+fun NavGraphBuilder.firstTabScreen(
+    navController: NavHostController
+) {
     composable(FirstScreenRoute.route) {
-        FirstTabScreen()
+        FirstTabScreen(navController)
     }
 }
 
 @Composable
-fun FirstTabScreen() {
-    Box {
-        Text(
-            modifier = Modifier.align(Alignment.BottomCenter) ,
-            text = "FirstTabScreen"
-        )
+fun FirstTabScreen(
+    navController: NavHostController,
+    viewModel: TabFirstViewModel = hiltViewModel()
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xffeef3fc))
+    ) {
+        val menuItems = viewModel.menuItems.collectAsState()
+
+        Spacer(modifier = Modifier.height(12.dp))
+        Text(text = stringResource(id = R.string.bottom_first), fontSize = 20.sp)
+        Spacer(modifier = Modifier.height(12.dp))
+        LazyRow(content = {
+            items(menuItems.value) {
+                Button(
+                    modifier = Modifier.padding(horizontal = 4.dp),
+                    onClick = { navController.navigate(ColorCheckerRoute.route) }
+                ) {
+                    Text(text = it.title)
+                }
+            }
+        })
     }
 }
 
 @Preview
 @Composable
 fun PreFirstTabScreen() {
-    FirstTabScreen()
+    FirstTabScreen(navController = rememberNavController())
 }
 
 object FirstScreenRoute {

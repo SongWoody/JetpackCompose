@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.jetpackcompose.compose.screen.main.tab.BottomNavItem
@@ -24,7 +25,7 @@ import com.example.jetpackcompose.compose.screen.main.tab.thirdTabScreen
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
-
+    navController: NavHostController
 ) {
     val bottomNavController = rememberNavController()
 
@@ -39,7 +40,7 @@ fun MainScreen(
                 navController = bottomNavController,
                 startDestination = FirstScreenRoute.route
             ) {
-                firstTabScreen()
+                firstTabScreen(navController)
                 secondTabScreen()
                 thirdTabScreen()
             }

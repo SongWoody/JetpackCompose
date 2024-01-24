@@ -46,7 +46,7 @@ fun MyComposeApp() {
 
             colorCheckerNavGraph(onShowTwoButtonDialog)
 
-            mainScreen()
+            mainScreen(navController)
         }
     }
 }
