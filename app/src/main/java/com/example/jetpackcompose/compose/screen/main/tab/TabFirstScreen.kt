@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,6 +26,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.jetpackcompose.R
 import com.example.jetpackcompose.compose.screen.colorchecker.ColorCheckerRoute
+import kotlinx.coroutines.flow.collectLatest
 
 fun NavGraphBuilder.firstTabScreen(
     navController: NavHostController
@@ -39,6 +41,12 @@ fun FirstTabScreen(
     navController: NavHostController,
     viewModel: TabFirstViewModel = hiltViewModel()
 ) {
+    LaunchedEffect(key1 = true, block = {
+        viewModel.navigateRoute.collectLatest {
+            navController.navigate(it)
+        }
+    })
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -50,12 +58,12 @@ fun FirstTabScreen(
         Text(text = stringResource(id = R.string.bottom_first), fontSize = 20.sp)
         Spacer(modifier = Modifier.height(12.dp))
         LazyRow(content = {
-            items(menuItems.value) {
+            items(menuItems.value) { item ->
                 Button(
                     modifier = Modifier.padding(horizontal = 4.dp),
-                    onClick = { navController.navigate(ColorCheckerRoute.route) }
+                    onClick = item.onClickAction
                 ) {
-                    Text(text = it.title)
+                    Text(text = item.title)
                 }
             }
         })
