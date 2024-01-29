@@ -6,13 +6,14 @@ import com.example.jetpackcompose.compose.screen.colorchecker.ColorCheckerRoute
 import com.example.jetpackcompose.compose.screen.fontsizechecker.FontCheckerRoute
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
+import com.example.jetpackcompose.R
 
 class TabFirstViewModel: ViewModel() {
     data class MenuItem(
         val title: String,
+        val logo: Int,
         val onClickAction: ()->Unit = {}
     )
 
@@ -21,11 +22,17 @@ class TabFirstViewModel: ViewModel() {
 
     val menuItems: MutableStateFlow<List<MenuItem>> = MutableStateFlow(
         listOf(
-            MenuItem("ColorChecker", onClickAction = {
-                viewModelScope.launch { _navigateRoute.emit(ColorCheckerRoute.route) }
+            MenuItem(
+                "Color",
+                R.drawable.ic_action_checker_color,
+                onClickAction = {
+                    viewModelScope.launch { _navigateRoute.emit(ColorCheckerRoute.route) }
             }),
-            MenuItem("FontChecker", onClickAction = {
-                viewModelScope.launch { _navigateRoute.emit(FontCheckerRoute.route) }
+            MenuItem(
+                "Font",
+                R.drawable.ic_action_checker_font,
+                onClickAction = {
+                    viewModelScope.launch { _navigateRoute.emit(FontCheckerRoute.route) }
             }),
         )
     )
