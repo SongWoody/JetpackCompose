@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
@@ -68,33 +70,51 @@ fun FirstTabScreen(
         Spacer(modifier = Modifier.height(12.dp))
         Text(modifier = Modifier.padding(horizontal = 12.dp),text = stringResource(id = R.string.bottom_checker_title), fontSize = 20.sp)
         Spacer(modifier = Modifier.height(12.dp))
-        Card(
+
+        MenuContainerCard(
+            items = menuItems.value,
+            itemMaxIndex = 4,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(98.dp)
                 .padding(horizontal = 12.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
             colors = CardDefaults.cardColors(containerColor = Color.White)
+        ) { item ->
+            MenuItem(
+                title = item.title,
+                logoId = item.logo,
+                onClick = item.onClickAction
+            )
+        }
+    }
+}
+
+@Composable
+fun <E> MenuContainerCard(
+    items: List<E>,
+    itemMaxIndex: Int,
+    modifier: Modifier = Modifier,
+    elevation: CardElevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
+    colors: CardColors = CardDefaults.cardColors(containerColor = Color.White),
+    content: @Composable (E) -> Unit
+) {
+    Card(
+        modifier = modifier,
+        elevation = elevation,
+        colors = colors
+    ) {
+        Row(
+            modifier = Modifier.fillMaxSize()
         ) {
-            Row(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                (0..3).forEach {
-                    val item = menuItems.value.getOrNull(it)
-                    if (item != null) {
-                        Box(modifier = Modifier.weight(1f)) {
-                            MenuItem(
-                                title = item.title,
-                                logoId = item.logo,
-                                onClick = item.onClickAction
-                            )
-                        }
-                    } else {
-                        Box(modifier = Modifier.weight(1f))
+            (0..itemMaxIndex).forEach { index ->
+                val item = items.getOrNull(index)
+                Box(modifier = Modifier.weight(1f)) {
+                    item?.let {
+                        content(it)
                     }
                 }
             }
-
         }
     }
 }
